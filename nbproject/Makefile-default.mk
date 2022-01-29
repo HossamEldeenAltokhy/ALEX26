@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c mKIT.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c mKIT.c mLCD_8bits.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/mKIT.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/mKIT.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/mKIT.o ${OBJECTDIR}/mLCD_8bits.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/mKIT.o.d ${OBJECTDIR}/mLCD_8bits.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/mKIT.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/mKIT.o ${OBJECTDIR}/mLCD_8bits.o
 
 # Source Files
-SOURCEFILES=main.c mKIT.c
+SOURCEFILES=main.c mKIT.c mLCD_8bits.c
 
 
 
@@ -106,6 +106,12 @@ ${OBJECTDIR}/mKIT.o: mKIT.c  .generated_files/flags/default/c1771a2676050b3d423d
 	@${RM} ${OBJECTDIR}/mKIT.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/mKIT.o.d" -MT "${OBJECTDIR}/mKIT.o.d" -MT ${OBJECTDIR}/mKIT.o -o ${OBJECTDIR}/mKIT.o mKIT.c 
 	
+${OBJECTDIR}/mLCD_8bits.o: mLCD_8bits.c  .generated_files/flags/default/f9276a24fc0ff8ccc06f7c22af3974470ed86112 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/mLCD_8bits.o.d 
+	@${RM} ${OBJECTDIR}/mLCD_8bits.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/mLCD_8bits.o.d" -MT "${OBJECTDIR}/mLCD_8bits.o.d" -MT ${OBJECTDIR}/mLCD_8bits.o -o ${OBJECTDIR}/mLCD_8bits.o mLCD_8bits.c 
+	
 else
 ${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/6316ffe27fafdde08f0c3258ab4828ac1403f6c4 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
 	@${MKDIR} "${OBJECTDIR}" 
@@ -118,6 +124,12 @@ ${OBJECTDIR}/mKIT.o: mKIT.c  .generated_files/flags/default/19aea0c4fb974a9ef148
 	@${RM} ${OBJECTDIR}/mKIT.o.d 
 	@${RM} ${OBJECTDIR}/mKIT.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/mKIT.o.d" -MT "${OBJECTDIR}/mKIT.o.d" -MT ${OBJECTDIR}/mKIT.o -o ${OBJECTDIR}/mKIT.o mKIT.c 
+	
+${OBJECTDIR}/mLCD_8bits.o: mLCD_8bits.c  .generated_files/flags/default/d5893e4120cebc854a7403e87bdf8a746c1c8a9a .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/mLCD_8bits.o.d 
+	@${RM} ${OBJECTDIR}/mLCD_8bits.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/mLCD_8bits.o.d" -MT "${OBJECTDIR}/mLCD_8bits.o.d" -MT ${OBJECTDIR}/mLCD_8bits.o -o ${OBJECTDIR}/mLCD_8bits.o mLCD_8bits.c 
 	
 endif
 
