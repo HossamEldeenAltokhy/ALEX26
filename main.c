@@ -1,126 +1,140 @@
 #define F_CPU 16000000UL
 
-#include <avr/io.h>
+#include "avr/io.h"
 #include <util/delay.h>
-
-#define LED0   2
-#define LED1   7
-#define LED2   3
-
-#define BTN0   0
-#define BTN1   6
-#define BTN2   2
+#include "mKIT.h"
 
 
+#define Keypad_DIR       DDRD
+#define Keypad_DATA_OUT  PORTD
+#define Keypad_DATA_IN   PIND
 
-void init_BTNs();
+#define column0       4
+#define column1       5
+#define column2       6
+#define column3       7
 
-int isPressed(int PB_NUM);
 
-
-void init_LEDs(void);
-void LED_ON(int LED);
-void LED_OFF(int LED);
-void LED_TOGGLE(int LED);
-int LED_CHECK(int LED);
-
-int flag = 0;
+void init_KeyPad();
+int getKeypad();
 
 int main(void) {
 
-    init_LEDs();
-    init_BTNs();
+    DDRA = 0xFF;
+    init_KeyPad();
+
     while (1) {
 
-        while (isPressed(BTN0)) {
-            _delay_ms(50);
-            if (!isPressed(BTN0)) {
-                if (flag) {
-                    flag = 0;
-                    break;
-                } else {
-                    flag = 1;
-                    break;
+        PORTA = getKeypad();
+
+    }
+
+}
+
+void init_KeyPad() {
+
+
+    Keypad_DIR &= 0x0F;
+    //    Keypad_DIR &= ~((1<<7)|(1<<6)|(1<<5)|(1<<4));
+
+    Keypad_DIR |= 0x07; // 0b00000111
+
+    Keypad_DATA_OUT |= 0x07;
+}
+
+int getKeypad() {
+    Keypad_DATA_OUT |= 0x07;
+    _delay_ms(10);
+    if (Keypad_DATA_IN & (0xF0)) { // xxxxxxxx & 0b11110000
+        // Keypad is pressed
+        if (Keypad_DATA_IN & (1 << column0)) {
+            // 1,2 or 3
+            Keypad_DATA_OUT &= 0xF8;
+            _delay_ms(10);
+            Keypad_DATA_OUT |= (1 << 0);
+            _delay_ms(10);
+            if (Keypad_DATA_IN & (1 << column0)) {
+                // 
+                Keypad_DATA_OUT |= 0x07;
+                _delay_ms(10);
+                return 3;
+            } else {
+                Keypad_DATA_OUT &= 0xF8;
+                _delay_ms(10);
+                Keypad_DATA_OUT |= (1 << 1);
+                _delay_ms(10);
+                if (Keypad_DATA_IN & (1 << column0)) {
+                    // 
+                    Keypad_DATA_OUT |= 0x07;
+                    _delay_ms(10);
+                    return 2;
+                }else{
+                    Keypad_DATA_OUT |= 0x07;
+                    _delay_ms(10);
+                    return 1;
                 }
             }
-        }
-
-
-        if (flag) {
-            LED_ON(LED0);
+        } else if (Keypad_DATA_IN & (1 << column1)) {
+            // 6,5,or 4
+             Keypad_DATA_OUT &= 0xF8;
+            _delay_ms(10);
+            Keypad_DATA_OUT |= (1 << 0);
+            _delay_ms(10);
+            if (Keypad_DATA_IN & (1 << column1)) {
+                // 
+                Keypad_DATA_OUT |= 0x07;
+                _delay_ms(10);
+                return 6;
+            } else {
+                Keypad_DATA_OUT &= 0xF8;
+                _delay_ms(10);
+                Keypad_DATA_OUT |= (1 << 1);
+                _delay_ms(10);
+                if (Keypad_DATA_IN & (1 << column1)) {
+                    // 
+                    Keypad_DATA_OUT |= 0x07;
+                    _delay_ms(10);
+                    return 5;
+                }else{
+                    Keypad_DATA_OUT |= 0x07;
+                    _delay_ms(10);
+                    return 4;
+                }
+            }
+        } else if (Keypad_DATA_IN & (1 << column2)) {
+            // 7,8,or 9
+             Keypad_DATA_OUT &= 0xF8;
+            _delay_ms(10);
+            Keypad_DATA_OUT |= (1 << 0);
+            _delay_ms(10);
+            if (Keypad_DATA_IN & (1 << column2)) {
+                // 
+                Keypad_DATA_OUT |= 0x07;
+                _delay_ms(10);
+                return 9;
+            } else {
+                Keypad_DATA_OUT &= 0xF8;
+                _delay_ms(10);
+                Keypad_DATA_OUT |= (1 << 1);
+                _delay_ms(10);
+                if (Keypad_DATA_IN & (1 << column2)) {
+                    // 
+                    Keypad_DATA_OUT |= 0x07;
+                    _delay_ms(10);
+                    return 8;
+                }else{
+                    Keypad_DATA_OUT |= 0x07;
+                    _delay_ms(10);
+                    return 7;
+                }
+            }
+        } else if (Keypad_DATA_IN & (1 << column3)) {
+            // *,0,or #    
         } else {
-            LED_OFF(LED0);
+
         }
 
+        
+        
     }
-
-    return 0;
-}
-
-void init_LEDs(void) {
-    DDRC |= (1 << LED0) | (1 << LED1);
-    DDRD |= (1 << LED2);
-}
-
-int LED_CHECK(int LED) {
-    if (LED == LED2) {
-        if (PORTD & (1 << LED)) {
-            return 1;
-        } else {
-            return 0;
-        }
-    } else {
-        if (PORTC & (1 << LED)) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-}
-
-void init_BTNs() {
-    DDRB &= ~(1 << BTN0);
-    DDRD &= ~((1 << BTN1) | (1 << BTN2));
-}
-
-void LED_ON(int LED) {
-    if (LED == LED2) {
-        PORTD |= (1 << LED);
-    } else {
-        PORTC |= (1 << LED);
-    }
-}
-
-void LED_OFF(int LED) {
-    if (LED == LED2) {
-        PORTD &= ~(1 << LED);
-    } else {
-        PORTC &= ~(1 << LED);
-    }
-}
-
-void LED_TOGGLE(int LED) {
-    if (LED == LED2) {
-        PORTD ^= (1 << LED);
-    } else {
-        PORTC ^= (1 << LED);
-    }
-}
-
-int isPressed(int PB_NUM) {
-    if (PB_NUM == BTN0) {
-        if (PINB & (1 << BTN0)) {
-            return 1;
-        } else {
-            return 0;
-        }
-    } else {
-        if (PIND & (1 << PB_NUM)) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
-    return 0;
 }
