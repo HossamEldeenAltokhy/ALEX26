@@ -4,21 +4,26 @@
 #include <util/delay.h>
 #include "mKIT.h"
 #include "mLCD_4bits.h"
+#include "EXTERNAL_INT.h"
+#include <avr/interrupt.h>
 
-char str[] = "AHMED";
+
+ISR(INT0_vect){
+    
+    PORTA ^= 0xFF;
+    
+}
+
 
 int main(void) {
 
-    int x = 5344;
-
-    init_LCD_4bits();
+    DDRA = 0xFF; // set PORTA as OUT
     
+    INT0_init(INT_RISING);
 
+    Enable_Global_INT();
     while (1) {
-        x++;
-        LCD_CLEAR_4bits();
-        LCD_NUM_4bits(x);
-        _delay_ms(500);
+        
 
     }
 

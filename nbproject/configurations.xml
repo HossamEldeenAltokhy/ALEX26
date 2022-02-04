@@ -7,6 +7,7 @@
       <itemPath>mKIT.h</itemPath>
       <itemPath>mLCD_8bits.h</itemPath>
       <itemPath>mLCD_4bits.h</itemPath>
+      <itemPath>EXTERNAL_INT.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -19,6 +20,7 @@
       <itemPath>mKIT.c</itemPath>
       <itemPath>mLCD_8bits.c</itemPath>
       <itemPath>mLCD_4bits.c</itemPath>
+      <itemPath>EXTERNAL_INT.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
