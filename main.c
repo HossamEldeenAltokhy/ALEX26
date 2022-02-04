@@ -3,7 +3,7 @@
 #include "avr/io.h"
 #include <util/delay.h>
 #include "mKIT.h"
-#include "mLCD_8bits.h"
+#include "mLCD_4bits.h"
 
 char str[] = "AHMED";
 
@@ -11,13 +11,13 @@ int main(void) {
 
     int x = 5344;
 
-    init_LCD();
+    init_LCD_4bits();
     
 
     while (1) {
         x++;
-        LCD_CLEAR();
-        LCD_NUM(x);
+        LCD_CLEAR_4bits();
+        LCD_NUM_4bits(x);
         _delay_ms(500);
 
     }
