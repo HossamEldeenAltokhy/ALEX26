@@ -22,7 +22,10 @@ void INT0_Disable();
 
 void Enable_Global_INT();
 
-
+/**
+ * 
+ * @param INT_MODE select ( LOW,ANY, FALLING or RISING)
+ */
 void INT0_init(char INT_MODE);
 #endif	/* EXTERNAL_INT_H */
 

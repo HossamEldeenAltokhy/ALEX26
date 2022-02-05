@@ -7,6 +7,7 @@ void INT0_selectMode(char INT_MODE) {
     MCUCR |= INT_MODE & 0x03; // 00000011
 }
 
+
 void INT0_Enable() {
     GICR |= (1 << INT0);
 }
@@ -18,7 +19,10 @@ void INT0_Disable() {
 void Enable_Global_INT() {
     sei();
 }
-
+/**
+ * 
+ * @param INT_MODE select ( LOW,ANY, FALLING or RISING)
+ */
 void INT0_init(char INT_MODE) {
     INT0_selectMode(INT_MODE);
     INT0_Enable();
