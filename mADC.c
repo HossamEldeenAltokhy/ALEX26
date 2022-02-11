@@ -4,6 +4,10 @@
 #include "mADC.h"
 
 
+
+
+
+
 void ADC_selectRef(char Voltage_REF){
     switch(Voltage_REF){
         case AREF:
@@ -39,8 +43,14 @@ void ADC_enable(){
 void ADC_SC(){
     ADCSRA |= (1<<ADSC);
 }
+
+
 void ADC_INT_enable(){
     ADCSRA |= (1<<ADIE);
+}
+
+void ADC_INT_disable(){
+    ADCSRA &= ~(1<<ADIE);
 }
 void ADC_wait(){
 //    Booling on ADIF
@@ -49,4 +59,15 @@ void ADC_wait(){
 
 int ADC_read(){
     return ADCW;
+}
+
+
+void init_ADC(char CH_Num,char Voltage_REF, char PRE, char chooseBooling ){
+    ADC_selectCH(CH0_CH1);
+    ADC_selectRef(AVCC);
+    ADC_selectPRE(_Pre_128);
+    
+//    Booling Or INTERRUPT
+    chooseBooling? ADC_INT_disable():ADC_INT_enable();
+    ADC_enable();
 }

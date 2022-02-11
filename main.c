@@ -28,14 +28,10 @@ int main(void) {
     DDRC &= ~(1 << 0);
     init_LCD_4bits();
 
-    ADC_selectCH(CH0_CH1);
-    ADC_selectRef(AVCC);
-    ADC_selectPRE(_Pre_128);
-    //ADC_INT_enable();
-    ADC_enable();
+    init_ADC(CH0_CH1, AVCC, _Pre_128, Booling);
 
 
-    //Enable_Global_INT();
+//    Enable_Global_INT();
     ADC_SC();
 
     while (1) {

@@ -30,6 +30,12 @@
 #define _Pre_64      6
 #define _Pre_128     7
 
+#define Booling      1
+#define Non_Booling  0
+
+
+void init_ADC(char CH_Num,char Voltage_REF, char PRE, char chooseBooling );
+
 // ADMUX
 void ADC_selectRef(char Voltage_REF);
 void ADC_selectCH(char CH_Num);
@@ -39,6 +45,7 @@ void ADC_selectPRE(char PRE);
 void ADC_enable();
 void ADC_SC(); // Start Conversion
 void ADC_INT_enable();  // Enable ADC Interrupt
+void ADC_INT_disable();
 void ADC_wait();
 int ADC_read();
 #endif	/* MADC_H */
