@@ -10,7 +10,7 @@
 
 #define AREF        0
 #define AVCC        1
-#define INTERNAL    3
+#define INTERNAL    3  // 2.56V
 
 #define CH0    0
 #define CH1    1
@@ -20,6 +20,7 @@
 #define CH5    5
 #define CH6    6
 #define CH7    7
+#define CH0_CH1 16
 
 #define _Pre_2       1
 #define _Pre_4       2
