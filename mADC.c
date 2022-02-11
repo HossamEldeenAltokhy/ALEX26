@@ -63,9 +63,9 @@ int ADC_read(){
 
 
 void init_ADC(char CH_Num,char Voltage_REF, char PRE, char chooseBooling ){
-    ADC_selectCH(CH0_CH1);
-    ADC_selectRef(AVCC);
-    ADC_selectPRE(_Pre_128);
+    ADC_selectCH(CH_Num);
+    ADC_selectRef(Voltage_REF);
+    ADC_selectPRE(PRE);
     
 //    Booling Or INTERRUPT
     chooseBooling? ADC_INT_disable():ADC_INT_enable();
