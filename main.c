@@ -1,57 +1,38 @@
+/*
+ * File:   main.c
+ * Author: hossa
+ *
+ * Created on February 11, 2022, 3:58 PM
+ */
+
 #define F_CPU 16000000UL
-
-#include "avr/io.h"
-#include "EXTERNAL_INT.h"
-#include "mADC.h"
-#include "mLCD_4bits.h"
-#include <avr/interrupt.h>
+#include <avr/io.h>
 #include <util/delay.h>
+#include "mLCD_4bits.h"
+#include "mKIT.h"
+#include "mADC.h"
+#include "mTimer0.h"
+#include "EXTERNAL_INT.h"
+#include <avr/interrupt.h>
 
-//ISR(ADC_vect) {
-//    int data = ADC_read()*0.1953125; // in 'C
-//
-//    LCD_CLEAR_4bits();
-//    LCD_NUM_4bits(data);
-//    _delay_ms(50);
-//    
-//    if(data > 3000){
-//        PORTB = 0xFF;
-//    }else{
-//        PORTB = 0x00;
-//    }
-//    
-//}
+ISR(TIMER0_OVF_vect) {
+
+   
+        PORTA ^= 0xFF;
+       
+
+}
 
 int main(void) {
-
-    DDRB = 0xFF;
-    DDRC &= ~(1 << 0);
-    init_LCD_4bits();
-
-    init_ADC(CH0_CH1, AVCC, _Pre_128, Booling);
+    /* Replace with your application code */
+    DDRA = 0xFF;
+    init_Timer0(Normal , _Timer0_Pre_1024, Timer0_OVI);
 
 
-//    Enable_Global_INT();
-    ADC_SC();
-
+    Enable_Global_INT();
     while (1) {
-
-
-        if (PINC & (1 << 0)) {
-            ADC_SC();
-            ADC_wait();
-            // reading Data
-            int data = ADC_read()*0.1953125; // in 'C
-            LCD_CLEAR_4bits();
-            LCD_NUM_4bits(data);
-            _delay_ms(500);
-        }
-
-
-
 
 
 
     }
-
 }
