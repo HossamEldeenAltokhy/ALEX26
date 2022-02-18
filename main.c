@@ -5,7 +5,7 @@
  * Created on February 11, 2022, 3:58 PM
  */
 
-#define F_CPU 16000000UL
+#define F_CPU 1000000UL
 #include <avr/io.h>
 #include <util/delay.h>
 #include "mLCD_4bits.h"
@@ -18,34 +18,48 @@
 #define timeInSeconds  5
 #define timeInHalfSeconds  0
 #define timeInQuarterSeconds  0
+#define OC0  3
 
-ISR(TIMER0_COMP_vect) {
-    static int x = 0;
-    x++;
-//    if(x == 61*timeInSeconds+30*timeInHalfSeconds+15*timeInQuarterSeconds){
-    if(x == 61){
-        ADC_SC();
-        x=0;
-    }
+ISR(TIMER0_OVF_vect){
+    
 }
 
-ISR(ADC_vect){
-    int data = ADC_read()*4.8;
-        LCD_CLEAR_4bits();
-        LCD_NUM_4bits(data);
-}
-
+char speed = 0;
+char unit[] = " %";
 int main(void) {
     /* Replace with your application code */
     
     init_LCD_4bits();
-    init_ADC(CH0, AVCC, _Pre_128, Non_Booling);
-    Timer0_setComp(100);
-    init_Timer0(CTC , _Timer0_Pre_1024, Timer0_OCI); // 61 times per second
+    
+    
+    Timer0_setDutyCyle(10);
+    Timer0_OC0_PWM(OC0_PWM_SetUpClearDown);
+    init_Timer0(PWM , _Timer0_Pre_1024, Timer0_OVI); // 61 times per second
 
+    
     Enable_Global_INT();
+    
     while (1) {
 
+        if(PINC & (1<<0)){
+            speed += 10;
+            Timer0_setDutyCyle(speed);
+            LCD_CLEAR_4bits();
+            LCD_NUM_4bits(speed);
+            LCD_str_4bits(unit);
+            _delay_ms(500);
+
+        }
+
+        if(PINC & (1<<1)){
+            speed -= 10;
+            Timer0_setDutyCyle(speed);
+            LCD_CLEAR_4bits();
+            LCD_NUM_4bits(speed);
+            LCD_str_4bits(unit);
+            _delay_ms(500);
+
+        }
 
 
     }

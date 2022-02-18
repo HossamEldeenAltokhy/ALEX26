@@ -30,6 +30,18 @@ void Timer0_disableINT(char Timer0_INT){
 
 void init_Timer0(char Timer0_Mode, char _clock,char Timer0_INT){
     Timer0_selectMode(Timer0_Mode);
-    Timer0_enableINT(Timer0_INT);
+//    Timer0_enableINT(Timer0_INT);
     Timer0_selectCLK(_clock);
+}
+
+void Timer0_setDutyCyle(char percentage){
+    OCR0 = percentage*255/100.0;
+}
+void Timer0_OC0_FPWM(char mode){
+    DDRB |= (1<<3);
+    TCCR0 |= (mode<<COM00);
+}
+void Timer0_OC0_PWM(char mode){
+    DDRB |= (1<<3);
+    TCCR0 |= (mode<<COM00);
 }

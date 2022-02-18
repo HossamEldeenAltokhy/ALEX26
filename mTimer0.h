@@ -19,6 +19,12 @@
 #define _External_Rising  0x07
 
 
+#define OC0_PWM_ClearUpSetDown   0x02
+#define OC0_PWM_SetUpClearDown   0x03
+
+#define OC0_FPWM_ClearSet  0x02
+#define OC0_FPWM_SetClear  0x03
+
 #define Normal      0x00    
 #define PWM         0x40
 #define CTC         0x08
@@ -36,8 +42,11 @@ void Timer0_selectMode(char Timer0_Mode);
 void Timer0_enableINT(char Timer0_INT);
 void Timer0_disableINT(char Timer0_INT);
 
-
+// DutyCycle
+void Timer0_setDutyCyle(char percentage);
 
 void init_Timer0(char Timer0_Mode, char _clock,char Timer0_INT);
+void Timer0_OC0_FPWM(char mode);
+void Timer0_OC0_PWM(char mode);
 #endif	/* MTIMER0_H */
 

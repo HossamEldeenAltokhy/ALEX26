@@ -15,7 +15,7 @@
 #define LCD_CONTROL     PORTB
 #define LCD_CONTROL_DIR DDRB
 
-#define EN  3
+#define EN  4
 #define RW  2
 #define RS  1
 
