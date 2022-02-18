@@ -27,7 +27,7 @@
 #define Timer0_OVI  0x01
 #define Timer0_OCI  0x02
 
-
+void Timer0_setComp(char val);
 void Timer0_OFF();
 void Timer0_selectCLK(char _clock);
 void Timer0_selectMode(char Timer0_Mode);

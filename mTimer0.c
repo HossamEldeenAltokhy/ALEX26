@@ -2,6 +2,11 @@
 #include "mTimer0.h"
 
 
+
+void Timer0_setComp(char val){
+    OCR0 = val;
+}
+
 void Timer0_OFF(){
     TCCR0 &= 0xF8;
 }

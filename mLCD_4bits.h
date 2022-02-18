@@ -10,14 +10,14 @@
 
 // Configuration 
 
-#define LCD_DATA        PORTD
-#define LCD_DATA_DIR    DDRD
-#define LCD_CONTROL     PORTD
-#define LCD_CONTROL_DIR DDRD
+#define LCD_DATA        PORTA
+#define LCD_DATA_DIR    DDRA
+#define LCD_CONTROL     PORTB
+#define LCD_CONTROL_DIR DDRB
 
-#define EN  2
-#define RW  1
-#define RS  0
+#define EN  3
+#define RW  2
+#define RS  1
 
 void init_LCD_4bits();
 void LCD_write_4bits(char data);
