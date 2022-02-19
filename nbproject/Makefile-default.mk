@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c mKIT.c mLCD_8bits.c mLCD_4bits.c EXTERNAL_INT.c mADC.c mTimer0.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c mKIT.c mLCD_8bits.c mLCD_4bits.c EXTERNAL_INT.c mADC.c mTimer0.c mUART.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/mKIT.o ${OBJECTDIR}/mLCD_8bits.o ${OBJECTDIR}/mLCD_4bits.o ${OBJECTDIR}/EXTERNAL_INT.o ${OBJECTDIR}/mADC.o ${OBJECTDIR}/mTimer0.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/mKIT.o.d ${OBJECTDIR}/mLCD_8bits.o.d ${OBJECTDIR}/mLCD_4bits.o.d ${OBJECTDIR}/EXTERNAL_INT.o.d ${OBJECTDIR}/mADC.o.d ${OBJECTDIR}/mTimer0.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/mKIT.o ${OBJECTDIR}/mLCD_8bits.o ${OBJECTDIR}/mLCD_4bits.o ${OBJECTDIR}/EXTERNAL_INT.o ${OBJECTDIR}/mADC.o ${OBJECTDIR}/mTimer0.o ${OBJECTDIR}/mUART.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/mKIT.o.d ${OBJECTDIR}/mLCD_8bits.o.d ${OBJECTDIR}/mLCD_4bits.o.d ${OBJECTDIR}/EXTERNAL_INT.o.d ${OBJECTDIR}/mADC.o.d ${OBJECTDIR}/mTimer0.o.d ${OBJECTDIR}/mUART.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/mKIT.o ${OBJECTDIR}/mLCD_8bits.o ${OBJECTDIR}/mLCD_4bits.o ${OBJECTDIR}/EXTERNAL_INT.o ${OBJECTDIR}/mADC.o ${OBJECTDIR}/mTimer0.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/mKIT.o ${OBJECTDIR}/mLCD_8bits.o ${OBJECTDIR}/mLCD_4bits.o ${OBJECTDIR}/EXTERNAL_INT.o ${OBJECTDIR}/mADC.o ${OBJECTDIR}/mTimer0.o ${OBJECTDIR}/mUART.o
 
 # Source Files
-SOURCEFILES=main.c mKIT.c mLCD_8bits.c mLCD_4bits.c EXTERNAL_INT.c mADC.c mTimer0.c
+SOURCEFILES=main.c mKIT.c mLCD_8bits.c mLCD_4bits.c EXTERNAL_INT.c mADC.c mTimer0.c mUART.c
 
 
 
@@ -136,6 +136,12 @@ ${OBJECTDIR}/mTimer0.o: mTimer0.c  .generated_files/flags/default/4ba394efb78da8
 	@${RM} ${OBJECTDIR}/mTimer0.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/mTimer0.o.d" -MT "${OBJECTDIR}/mTimer0.o.d" -MT ${OBJECTDIR}/mTimer0.o -o ${OBJECTDIR}/mTimer0.o mTimer0.c 
 	
+${OBJECTDIR}/mUART.o: mUART.c  .generated_files/flags/default/74ce27d343b074cfb755165f151d297c58174de6 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/mUART.o.d 
+	@${RM} ${OBJECTDIR}/mUART.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/mUART.o.d" -MT "${OBJECTDIR}/mUART.o.d" -MT ${OBJECTDIR}/mUART.o -o ${OBJECTDIR}/mUART.o mUART.c 
+	
 else
 ${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/6316ffe27fafdde08f0c3258ab4828ac1403f6c4 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
 	@${MKDIR} "${OBJECTDIR}" 
@@ -178,6 +184,12 @@ ${OBJECTDIR}/mTimer0.o: mTimer0.c  .generated_files/flags/default/cac100ffd57edf
 	@${RM} ${OBJECTDIR}/mTimer0.o.d 
 	@${RM} ${OBJECTDIR}/mTimer0.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/mTimer0.o.d" -MT "${OBJECTDIR}/mTimer0.o.d" -MT ${OBJECTDIR}/mTimer0.o -o ${OBJECTDIR}/mTimer0.o mTimer0.c 
+	
+${OBJECTDIR}/mUART.o: mUART.c  .generated_files/flags/default/acde9dc60902103565f7e127de2ab0d86cac0af7 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/mUART.o.d 
+	@${RM} ${OBJECTDIR}/mUART.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/mUART.o.d" -MT "${OBJECTDIR}/mUART.o.d" -MT ${OBJECTDIR}/mUART.o -o ${OBJECTDIR}/mUART.o mUART.c 
 	
 endif
 
