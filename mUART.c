@@ -14,7 +14,7 @@ void init_UART(int BaudRate){
     
     //ACCESS UCSRB 
     // Enable RX , TX
-    UCSRB |= (1<<TXEN)|(1<<RXEN);
+    UCSRB |= (1<<TXEN)|(1<<RXEN)|(1<<RXCIE);
     // Setting BaudRate
     short UBRR = (F_CPU/16.0/BaudRate)-1;
     UBRRL = (char) UBRR;
