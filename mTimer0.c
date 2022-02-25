@@ -30,7 +30,7 @@ void Timer0_disableINT(char Timer0_INT){
 
 void init_Timer0(char Timer0_Mode, char _clock,char Timer0_INT){
     Timer0_selectMode(Timer0_Mode);
-//    Timer0_enableINT(Timer0_INT);
+    Timer0_enableINT(Timer0_INT);
     Timer0_selectCLK(_clock);
 }
 

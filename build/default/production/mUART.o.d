@@ -9,7 +9,9 @@ build/default/production/mUART.o.d build/default/production/mUART.o: \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\common.h \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\version.h \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\fuse.h \
- c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\lock.h mUART.h
+ c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\lock.h mUART.h \
+ c:\program\ files\microchip\xc8\v2.32\avr\avr\include\stdlib.h \
+ c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stddef.h
 
 c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\io.h:
 
@@ -34,3 +36,7 @@ c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\fuse.h:
 c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\lock.h:
 
 mUART.h:
+
+c:\program\ files\microchip\xc8\v2.32\avr\avr\include\stdlib.h:
+
+c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stddef.h:

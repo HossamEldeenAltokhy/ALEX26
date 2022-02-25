@@ -16,17 +16,46 @@
 #include <avr/interrupt.h>
 #include "mUART.h"
 
+
+int x = 0;
+
+char arr[] = "Hello";
+
+
+ISR(TIMER0_OVF_vect){
+    
+    static int counter = 0;
+    
+    counter++;
+    
+    if(counter == 61){
+        counter = 0;
+        UART_send('\r');
+        UART_send_num(x++);
+    }
+    
+}
+
+
 int main(void) {
     /* Replace with your application code */
     
    
+    
     init_UART(9600);
+    init_Timer0(Normal, _Timer0_Pre_1024, Timer0_OVI);
     
+    
+    // To set any bit in UCSRC
+    //UCSRC |= (1<<URSEL)|(1<<USBS);
    
-    
+    // To reset any bit in UCSRC
+    //UCSRC = (1<<URSEL)|(UCSRC & (~(1<<USBS)));
+            
+    Enable_Global_INT();
     while (1) {
 
-            UART_send('A');
+          
 
 
     }

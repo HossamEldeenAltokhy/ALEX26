@@ -1,6 +1,7 @@
 #define F_CPU 16000000UL
 #include <avr/io.h>
 #include "mUART.h"
+#include <stdlib.h>
 
 #define BR_9600   9600
 #define BR_2400   2400
@@ -29,6 +30,20 @@ void UART_send(char data){
     while(!(UCSRA & (1<<UDRE)));
     // Now UDR is Empty and ready to be written.
     UDR = data;
+    
+}
+
+void UART_send_str(char * str){
+    for (int i =0 ; str[i] != '\0'; i++){
+        UART_send(str[i]);
+    }
+}
+
+void UART_send_num(int num){
+    
+    char buff[11];
+    itoa(num, buff, 10);
+    UART_send_str(buff);
     
 }
 char UART_read(void){
