@@ -17,39 +17,39 @@
 #include "mUART.h"
 
 
-#define _LED0   0
-#define MOTOR_pin   0
-#define _LED1   1
+#define _LED0   2
+#define MOTOR_pin   2
+#define _LED1   7
 
 
-char message1[] = "LED0 ON \r";
-char message2[] = "LED0 OFF \r";
-char message3[] = "LED1 ON \r";
-char message4[] = "LED1 OFF \r";
-char message5[] = "MOTOR ON \r";
-char message6[] = "MOTOR OFF \r";
+char message1[] = "LED0 ON \n";
+char message2[] = "LED0 OFF \n";
+char message3[] = "LED1 ON \n";
+char message4[] = "LED1 OFF \n";
+char message5[] = "MOTOR ON \n";
+char message6[] = "MOTOR OFF \n";
 
 void setupLEDs() {
-    DDRA |= (1 << _LED0) | (1 << _LED1);
+    DDRC |= (1 << _LED0) | (1 << _LED1);
 }
 
 void setupMOTOR() {
-    DDRB |= (1 << MOTOR_pin);
+    DDRA |= (1 << MOTOR_pin);
 }
 
 void _LED_ON(int ledNum) {
-    PORTA |= (1 << ledNum);
+    PORTC |= (1 << ledNum);
 }
 
 void _LED_OFF(int ledNum) {
-    PORTA &= ~(1 << ledNum);
+    PORTC &= ~(1 << ledNum);
 }
 
 void motor_ON() {
-    PORTB |= (1 << MOTOR_pin);
+    PORTA |= (1 << MOTOR_pin);
 }
 void motor_OFF() {
-    PORTB &= ~(1 << MOTOR_pin);
+    PORTA &= ~(1 << MOTOR_pin);
 }
 
 ISR(USART_RXC_vect) {
@@ -94,7 +94,7 @@ ISR(TIMER0_OVF_vect) {
             UART_send_str(message6);
         }
         UART_send_num(data);
-        UART_send('\r');
+        UART_send('\n');
     }
 
 }
@@ -105,7 +105,7 @@ int main(void) {
     setupLEDs();
 
     init_Timer0(Normal, _Timer0_Pre_1024, Timer0_OVI);
-    init_ADC(CH2, AVCC, _Pre_128, Booling);
+    init_ADC(CH1, AVCC, _Pre_128, Booling);
 
 
     init_UART(9600);
